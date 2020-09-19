@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
-
+import PopupDialog
 
 enum currentSessionState  {
     case movie, food, none
@@ -55,8 +55,49 @@ class StartSessionVC: UIViewController {
     @objc func startSesh(notification:NSNotification) {
         let userInfo:Dictionary<String,Any> = notification.userInfo as! Dictionary<String,Any>
         
-        
-        print(userInfo)
+        if let val = userInfo["type"] as? String {
+            if val == "food" {
+                if let rating = userInfo["rating"] as? MinRating, let range = userInfo["pricerange"] as? PriceRange {
+                    print("Rating: \(rating)")
+                    print("Range: \(range)")
+                } else {
+                    idkError()
+                }
+            } else if val == "movie" {
+                if let genre = userInfo["genre"] as? movieGenre, let kind = userInfo["kind"] as? movieKind {
+                    print("Genre: \(genre)")
+                    print("Kind: \(kind)")
+                } else {
+                    idkError()
+                }
+            } else {
+                idkError()
+            }
+        } else {
+            idkError()
+        }
+    }
+    
+    func idkError() {
+        let title = "Something went wrong"
+        let message = "Your request to generate a session was unsucessful, please try again."
+        let image = UIImage(named: "errorguy")
+
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: image)
+
+        // Create buttons
+        let buttonOne = CancelButton(title: "Ok") {
+        }
+
+
+        // Add buttons to dialog
+        // Alternatively, you can use popup.addButton(buttonOne)
+        // to add a single button
+        popup.addButtons([buttonOne])
+
+        // Present dialog
+        self.present(popup, animated: true, completion: nil)
     }
     
     
