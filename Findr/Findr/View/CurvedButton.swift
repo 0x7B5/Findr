@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import TKSubmitTransition
 
 public class CurvedButton: UIButton {
     

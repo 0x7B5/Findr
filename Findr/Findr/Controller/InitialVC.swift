@@ -10,7 +10,6 @@ import SwiftVideoBackground
 import PopupDialog
 
 class InitialVC: UIViewController {
-   
     
     lazy var signUpView = SignUpView()
     unowned var bgView: UIView { return signUpView.bgView}
@@ -96,9 +95,11 @@ class InitialVC: UIViewController {
     }
     
     @objc func guestFunc() {
-        
-        
+        let vc =  DecideVC()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
+    
     
    
     

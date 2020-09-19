@@ -20,6 +20,8 @@
 		CC638F3D251576560019D2AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F3C251576560019D2AA /* Constants.swift */; };
 		CC638F44251576AE0019D2AA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CC638F43251576AE0019D2AA /* nyc.mp4 */; };
 		CC638F47251581E20019D2AA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F46251581E20019D2AA /* UIColor+Extensions.swift */; };
+		CC638F522515950C0019D2AA /* DecideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F512515950C0019D2AA /* DecideVC.swift */; };
+		CC638F552515953D0019D2AA /* DecideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F542515953D0019D2AA /* DecideView.swift */; };
 		E478796868CB04FA70BACE15 /* Pods_Findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		CC638F3C251576560019D2AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC638F43251576AE0019D2AA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyc.mp4; sourceTree = "<group>"; };
 		CC638F46251581E20019D2AA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		CC638F512515950C0019D2AA /* DecideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideVC.swift; sourceTree = "<group>"; };
+		CC638F542515953D0019D2AA /* DecideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 			children = (
 				CC638F36251576420019D2AA /* SignUpView.swift */,
 				CC638F392515764A0019D2AA /* CurvedButton.swift */,
+				CC638F542515953D0019D2AA /* DecideView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				CC638F10251575460019D2AA /* InitialVC.swift */,
+				CC638F512515950C0019D2AA /* DecideVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -278,11 +284,13 @@
 				CC638F47251581E20019D2AA /* UIColor+Extensions.swift in Sources */,
 				CC638F0D251575460019D2AA /* AppDelegate.swift in Sources */,
 				CC638F3A2515764A0019D2AA /* CurvedButton.swift in Sources */,
+				CC638F552515953D0019D2AA /* DecideView.swift in Sources */,
 				CC638F34251576350019D2AA /* Session.swift in Sources */,
 				CC638F37251576420019D2AA /* SignUpView.swift in Sources */,
 				CC638F31251576280019D2AA /* Food.swift in Sources */,
 				CC638F2D251576200019D2AA /* Movie.swift in Sources */,
 				CC638F0F251575460019D2AA /* SceneDelegate.swift in Sources */,
+				CC638F522515950C0019D2AA /* DecideVC.swift in Sources */,
 				CC638F3D251576560019D2AA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
