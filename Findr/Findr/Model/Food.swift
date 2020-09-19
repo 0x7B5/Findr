@@ -11,10 +11,10 @@ import UIKit
 public struct Food {
     let name: String
     #warning("Fix this shit")
-    let image: UIImage
+    let image: String
     let type: String
-    let distance: Int
-    let reviewScore: Float
+    let distance: Double
+    let reviewScore: Double
     let gmapsLink: String
     let priceRange: Int
 }

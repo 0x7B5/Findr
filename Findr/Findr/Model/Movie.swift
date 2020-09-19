@@ -10,8 +10,9 @@ import UIKit
 public struct Movie {
     let title: String
     #warning("Figure out the handle this shit")
-    let Image: UIImage
-    let genre: String
+    let image: String
+    let id: String
+    let genre: [Int]
     let description: String
     let imdbScore: Float
     let trailerLink: String

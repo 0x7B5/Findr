@@ -13,6 +13,7 @@
 		CC3301602515A99E00C8FD07 /* StartSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33015F2515A99E00C8FD07 /* StartSessionView.swift */; };
 		CC3301732515B73200C8FD07 /* MovieSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3301722515B73200C8FD07 /* MovieSessionVC.swift */; };
 		CC3301762515B73B00C8FD07 /* ResturantSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3301752515B73B00C8FD07 /* ResturantSessionVC.swift */; };
+		CC54E39D2515E9DD0057EE27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC54E39C2515E9DD0057EE27 /* GoogleService-Info.plist */; };
 		CC638F0D251575460019D2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F0C251575460019D2AA /* AppDelegate.swift */; };
 		CC638F0F251575460019D2AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F0E251575460019D2AA /* SceneDelegate.swift */; };
 		CC638F11251575460019D2AA /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F10251575460019D2AA /* InitialVC.swift */; };
@@ -41,6 +42,7 @@
 		CC33015F2515A99E00C8FD07 /* StartSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSessionView.swift; sourceTree = "<group>"; };
 		CC3301722515B73200C8FD07 /* MovieSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSessionVC.swift; sourceTree = "<group>"; };
 		CC3301752515B73B00C8FD07 /* ResturantSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResturantSessionVC.swift; sourceTree = "<group>"; };
+		CC54E39C2515E9DD0057EE27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC638F09251575460019D2AA /* Findr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Findr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC638F0C251575460019D2AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC638F0E251575460019D2AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				CC638F25251575AB0019D2AA /* Helper */,
 				CC638F24251575A90019D2AA /* Supporting Files */,
 				CC638F1A251575490019D2AA /* Info.plist */,
+				CC54E39C2515E9DD0057EE27 /* GoogleService-Info.plist */,
 				CC638F3C251576560019D2AA /* Constants.swift */,
 			);
 			path = Findr;
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC638F44251576AE0019D2AA /* nyc.mp4 in Resources */,
+				CC54E39D2515E9DD0057EE27 /* GoogleService-Info.plist in Resources */,
 				CC638F19251575490019D2AA /* LaunchScreen.storyboard in Resources */,
 				CC638F16251575490019D2AA /* Assets.xcassets in Resources */,
 			);
