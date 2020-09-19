@@ -35,17 +35,30 @@ class StartSessionVC: UIViewController {
     unowned var backButton: UIButton { return seshView.backButton }
     unowned var emptyView: UIView { return seshView.emptyView}
     
+    let nc = NotificationCenter.default
+    
+    
+    
     //
     
-//    var mySession: Session
+    //    var mySession: Session
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.backButton.addTarget(self, action: #selector(goBack), for: UIControl.Event.touchUpInside)
         
         customSC.addTarget(self, action: #selector(setSeshType), for: .valueChanged)
+        nc.addObserver(self, selector: #selector(startSesh), name: NSNotification.Name(rawValue: "printValue"), object: nil)
         
     }
+    
+    @objc func startSesh(notification:NSNotification) {
+        let userInfo:Dictionary<String,Any> = notification.userInfo as! Dictionary<String,Any>
+        
+        
+        print(userInfo)
+    }
+    
     
     @objc func setSeshType() {
         switch customSC.selectedSegmentIndex {
@@ -82,7 +95,7 @@ class StartSessionVC: UIViewController {
                 childVC!.didMove(toParent: self)
             }
         }
-
+        
     }
     
     
