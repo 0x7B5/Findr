@@ -27,6 +27,7 @@ public class StartSessionView: UIView {
         addSubview(backButton)
         addSubview(startLbl)
         addSubview(customSC)
+        addSubview(emptyView)
         
         
     }
@@ -59,6 +60,15 @@ public class StartSessionView: UIView {
             $0.centerY.equalToSuperview().multipliedBy(0.4)
         }
         
+        emptyView.snp.makeConstraints {
+            $0.width.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(customSC.snp.bottom).offset(20)
+            $0.height.equalToSuperview()
+            
+        }
+        
+        
     }
     
     // Button
@@ -88,4 +98,9 @@ public class StartSessionView: UIView {
     }()
     
     public let customSC = UISegmentedControl(items: ["Resturants","Movies"])
+    
+    public let emptyView = UIView()
+    
+    
+    
 }
