@@ -10,4 +10,10 @@ target 'Findr' do
   pod 'SwiftVideoBackground'
   pod 'PopupDialog', '~> 1.1'
   pod 'QuickTableViewController'
+  pod 'Shuffle-iOS'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Core'
+  pod 'SDWebImage'
+  pod 'JGProgressHUD'
 end

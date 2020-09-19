@@ -1,6 +1,0 @@
-framework module Pods_Findr {
-  umbrella header "Pods-Findr-umbrella.h"
-
-  export *
-  module * { export * }
-}

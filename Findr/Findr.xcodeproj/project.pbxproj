@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC2BE0602515D20900E90C71 /* SwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BE05F2515D20900E90C71 /* SwipeVC.swift */; };
+		CC2BE0632515D9A300E90C71 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2BE0622515D9A300E90C71 /* SessionManager.swift */; };
 		CC3301332515A54500C8FD07 /* StartSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3301322515A54500C8FD07 /* StartSessionVC.swift */; };
 		CC3301602515A99E00C8FD07 /* StartSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33015F2515A99E00C8FD07 /* StartSessionView.swift */; };
 		CC3301732515B73200C8FD07 /* MovieSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3301722515B73200C8FD07 /* MovieSessionVC.swift */; };
@@ -33,6 +35,8 @@
 		00FC3A56AAFBEF4257A5EBD0 /* Pods-Findr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Findr.release.xcconfig"; path = "Target Support Files/Pods-Findr/Pods-Findr.release.xcconfig"; sourceTree = "<group>"; };
 		3005838C5F39A927BCEADFBE /* Pods-Findr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Findr.debug.xcconfig"; path = "Target Support Files/Pods-Findr/Pods-Findr.debug.xcconfig"; sourceTree = "<group>"; };
 		B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Findr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC2BE05F2515D20900E90C71 /* SwipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeVC.swift; sourceTree = "<group>"; };
+		CC2BE0622515D9A300E90C71 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		CC3301322515A54500C8FD07 /* StartSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSessionVC.swift; sourceTree = "<group>"; };
 		CC33015F2515A99E00C8FD07 /* StartSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSessionView.swift; sourceTree = "<group>"; };
 		CC3301722515B73200C8FD07 /* MovieSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSessionVC.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		CC638F25251575AB0019D2AA /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CC2BE0622515D9A300E90C71 /* SessionManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				CC3301712515B70400C8FD07 /* CreatingSession */,
 				CC638F10251575460019D2AA /* InitialVC.swift */,
 				CC638F512515950C0019D2AA /* DecideVC.swift */,
+				CC2BE05F2515D20900E90C71 /* SwipeVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -302,9 +308,11 @@
 			files = (
 				CC638F11251575460019D2AA /* InitialVC.swift in Sources */,
 				CC638F47251581E20019D2AA /* UIColor+Extensions.swift in Sources */,
+				CC2BE0632515D9A300E90C71 /* SessionManager.swift in Sources */,
 				CC638F0D251575460019D2AA /* AppDelegate.swift in Sources */,
 				CC638F3A2515764A0019D2AA /* CurvedButton.swift in Sources */,
 				CC638F552515953D0019D2AA /* DecideView.swift in Sources */,
+				CC2BE0602515D20900E90C71 /* SwipeVC.swift in Sources */,
 				CC3301332515A54500C8FD07 /* StartSessionVC.swift in Sources */,
 				CC638F34251576350019D2AA /* Session.swift in Sources */,
 				CC3301732515B73200C8FD07 /* MovieSessionVC.swift in Sources */,

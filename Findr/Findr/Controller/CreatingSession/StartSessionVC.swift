@@ -139,6 +139,19 @@ class StartSessionVC: UIViewController {
         
     }
     
+    func goToSwipe() {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        
+        let vc = SwipeVC()
+        vc.modalPresentationStyle = .fullScreen
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.present(vc, animated: false)
+    }
+    
     
     
     @objc func goBack() {
