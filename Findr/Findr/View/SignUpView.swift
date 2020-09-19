@@ -179,10 +179,6 @@ public class SignUpView: UIView {
     public let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "backarrow"), for: UIControl.State.normal)
-//        button.setTitle("Back", for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.medium)
-//        button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: UIControl.State.normal)
-//        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         return button
     }()

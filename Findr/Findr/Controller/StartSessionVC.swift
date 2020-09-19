@@ -22,30 +22,46 @@ import SnapKit
  Expensive
  */
 
-class StartSessionVC: QuickTableViewController {
+class StartSessionVC: UIViewController {
+    
+    lazy var seshView = StartSessionView()
+    
+    unowned var customSC: UISegmentedControl { return seshView.customSC }
+    unowned var backButton: UIButton { return seshView.backButton }
+    
+    //
     
 //    var mySession: Session
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMovie()
-    }
-    
-    func setupMovie() {
-        tableContents = [
-              RadioSection(title: "What Kind?", options: [
-                OptionRow(text: "Movies", isSelected: true, action: {_ in
-                    print("Movies")
-                }),
-                OptionRow(text: "TV Shows", isSelected: false, action: {_ in
-                }),
-                OptionRow(text: "Both", isSelected: false, action: {_ in
-                })
-              ], footer: "See RadioSection for more details.")
-            ]
+        
+        self.backButton.addTarget(self, action: #selector(goBack), for: UIControl.Event.touchUpInside)
+        
+        customSC.addTarget(self, action: #selector(setSeshType), for: .valueChanged)
         
     }
     
-    func setupFood() {
+    @objc func setSeshType() {
+        print(customSC.selectedSegmentIndex)
         
     }
+    
+    
+    
+    @objc func goBack() {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
+    override func loadView() {
+        self.view = seshView
+    }
+    
+    
 }

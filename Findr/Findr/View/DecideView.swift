@@ -38,7 +38,7 @@ public class DecideView: UIView {
         xButton.snp.makeConstraints {
             $0.width.equalToSuperview().multipliedBy(0.1)
             $0.height.equalTo(xButton.snp.width)
-            $0.right.equalToSuperview().inset(10)
+            $0.left.equalToSuperview().inset(10)
             $0.top.equalToSuperview().inset(40)
         }
         
