@@ -11,12 +11,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    func clearLaunchScreenCache() {
+           do {
+               try FileManager.default.removeItem(atPath: NSHomeDirectory()+"/Library/SplashBoard")
+           } catch {
+               print("Failed to delete launch screen cache: \(error)")
+           }
+       }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+        clearLaunchScreenCache()
 
         let mainVC = InitialVC()
         self.window?.rootViewController = mainVC

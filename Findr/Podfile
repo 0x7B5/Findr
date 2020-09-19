@@ -9,6 +9,5 @@ target 'Findr' do
   pod 'SnapKit'
   pod 'SwiftVideoBackground'
   pod 'PopupDialog', '~> 1.1'
-  pod 'TKSubmitTransition', :git => 'https://github.com/entotsu/TKSubmitTransition.git'
-
+  pod 'QuickTableViewController'
 end

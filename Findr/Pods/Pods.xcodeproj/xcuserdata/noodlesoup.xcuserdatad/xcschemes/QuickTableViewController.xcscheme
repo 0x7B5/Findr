@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "88457EBD8621B8664A94CAB3710C13EB"
-               BuildableName = "TKSubmitTransition.framework"
-               BlueprintName = "TKSubmitTransition"
+               BlueprintIdentifier = "E7D16F6260A6FAB7F88EB5ACC56D911D"
+               BuildableName = "QuickTableViewController.framework"
+               BlueprintName = "QuickTableViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

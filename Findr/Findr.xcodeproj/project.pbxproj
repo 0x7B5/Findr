@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC3301332515A54500C8FD07 /* StartSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3301322515A54500C8FD07 /* StartSessionVC.swift */; };
 		CC638F0D251575460019D2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F0C251575460019D2AA /* AppDelegate.swift */; };
 		CC638F0F251575460019D2AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F0E251575460019D2AA /* SceneDelegate.swift */; };
 		CC638F11251575460019D2AA /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F10251575460019D2AA /* InitialVC.swift */; };
@@ -29,6 +30,7 @@
 		00FC3A56AAFBEF4257A5EBD0 /* Pods-Findr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Findr.release.xcconfig"; path = "Target Support Files/Pods-Findr/Pods-Findr.release.xcconfig"; sourceTree = "<group>"; };
 		3005838C5F39A927BCEADFBE /* Pods-Findr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Findr.debug.xcconfig"; path = "Target Support Files/Pods-Findr/Pods-Findr.debug.xcconfig"; sourceTree = "<group>"; };
 		B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Findr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC3301322515A54500C8FD07 /* StartSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSessionVC.swift; sourceTree = "<group>"; };
 		CC638F09251575460019D2AA /* Findr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Findr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC638F0C251575460019D2AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC638F0E251575460019D2AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				CC638F10251575460019D2AA /* InitialVC.swift */,
 				CC638F512515950C0019D2AA /* DecideVC.swift */,
+				CC3301322515A54500C8FD07 /* StartSessionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				CC638F0D251575460019D2AA /* AppDelegate.swift in Sources */,
 				CC638F3A2515764A0019D2AA /* CurvedButton.swift in Sources */,
 				CC638F552515953D0019D2AA /* DecideView.swift in Sources */,
+				CC3301332515A54500C8FD07 /* StartSessionVC.swift in Sources */,
 				CC638F34251576350019D2AA /* Session.swift in Sources */,
 				CC638F37251576420019D2AA /* SignUpView.swift in Sources */,
 				CC638F31251576280019D2AA /* Food.swift in Sources */,

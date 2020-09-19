@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double TKSubmitTransitionVersionNumber;
-FOUNDATION_EXPORT const unsigned char TKSubmitTransitionVersionString[];
+FOUNDATION_EXPORT double QuickTableViewControllerVersionNumber;
+FOUNDATION_EXPORT const unsigned char QuickTableViewControllerVersionString[];
 
