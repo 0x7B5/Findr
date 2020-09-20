@@ -44,10 +44,10 @@ enum PriceRange: String {
     case three, two, one, any
 }
 
-enum movieKind {
+enum movieKind: String {
     case movie, tvshow, both
 }
 
-enum movieGenre {
+enum movieGenre: String {
     case comedy, action, horror, romance, any
 }

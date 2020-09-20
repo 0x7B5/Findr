@@ -12,6 +12,11 @@ public struct Movie {
     #warning("Figure out the handle this shit")
     let image: String
     let id: String
+    
+    // Action: 5
+    // Comedy: 9
+    // Horror: 19
+    // Romance: 4
     let genre: [Int]
     let description: String
     let imdbScore: Float

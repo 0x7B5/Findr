@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //            })
         //        }
         
-        SessionManager.shared.startFoodSession(rating: .four, range: .three, completion: { yuh in
+        SessionManager.shared.startMovieSession(genre: .comedy, kind: .both, completion: { yuh in
             print(yuh)
         })
         

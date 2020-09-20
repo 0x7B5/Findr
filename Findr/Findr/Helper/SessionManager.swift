@@ -20,6 +20,80 @@ public class SessionManager {
     var movies = [Movie]()
     var foods = [Food]()
     
+    func startMovieSession(genre: movieGenre, kind: movieKind, completion: @escaping (String) -> ()) {
+        
+        self.getAllMovies(completion: { [self] foods in
+            
+            let key = self.randomString(length: 6)
+            self.db.collection("sessions").document(key).setData([
+                "key": key,
+                "users": ["user1", "user2"],
+                "kind": "movie",
+                "genre": genre.rawValue,
+                "movieKind": kind.rawValue
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+            
+            var newMovie = [Movie]()
+            
+            for i in movies {
+                if genre == .any {
+                    newMovie.append(i)
+                    
+                } else {
+                    var temp = 0
+                    switch genre {
+                    case .action:
+                        temp = 5
+                    case .comedy:
+                        temp = 9
+                    case .horror:
+                        temp = 19
+                    case .romance:
+                        temp = 4
+                    default:
+                        temp = 9
+                    }
+                    
+                    if i.genre.contains(temp) {
+                        newMovie.append(i)
+                    }
+                }
+            }
+            
+            let finalArray = newMovie.choose(50)
+            
+            
+            for i in finalArray {
+                self.db.collection("sessions").document(key).collection("cards").document(i.id).setData([
+                    "title": i.title,
+                    "image": i.image,
+                    "id": i.id,
+                    "genre": i.genre,
+                    "description": i.description,
+                    "imdbScore": i.imdbScore,
+                    "trailerLink": i.trailerLink,
+                    "user1Swiped": false,
+                    "user2Swiped": false
+                ]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                    }
+                }
+            }
+            completion(key)
+            
+        })
+        completion("")
+    }
+    
     func startFoodSession(rating: MinRating, range: PriceRange, completion: @escaping (String) -> ()) {
         
         self.getAllFood(completion: { foods in
