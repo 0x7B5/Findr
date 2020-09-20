@@ -26,10 +26,22 @@ class SwipeVC: UIViewController {
         return view
     }()
     
+    public let keyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 35, weight: UIFont.Weight.semibold)
+        label.adjustsFontForContentSizeCategory = true
+        label.text = "4HSMMZ"
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.numberOfLines = 1
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        return label
+    }()
+    
     public let xButton: CurvedButton = {
         let button = CurvedButton(color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0))
         button.setTitle("X", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.light)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.light)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: UIControl.State.normal)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
@@ -125,6 +137,15 @@ class SwipeVC: UIViewController {
             $0.height.equalToSuperview()
             $0.centerX.equalToSuperview().multipliedBy(0.2)
             $0.top.equalToSuperview().inset(25)
+        }
+        
+        topView.addSubview(keyLabel)
+        
+        keyLabel.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.32)
+            $0.height.equalToSuperview()
+            $0.top.equalToSuperview().inset(25)
+            $0.right.equalToSuperview().inset(20)
         }
         
         topView.anchor(top: view.topAnchor,
