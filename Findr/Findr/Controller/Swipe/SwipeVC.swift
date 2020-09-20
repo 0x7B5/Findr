@@ -343,7 +343,7 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
         if myType == .movie {
             SessionManager.shared.getMoviePicture(copy: copy, completion: {
                 myImg in
-                let popup = PopupDialog(title: title, message: message, image: myImage)
+                let popup = PopupDialog(title: title, message: message, image: myImg)
                 
                 let buttonOne = DefaultButton(title: "No Thanks!", dismissOnTap: true) {
                     self.exitOut()

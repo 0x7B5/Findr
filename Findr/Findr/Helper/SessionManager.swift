@@ -99,27 +99,32 @@ public class SessionManager {
                                     if (error != nil) {
                                         imageView.sd_setImage(with: URL(string: newStringFoo)) { [self] (newImage, error, cache, urls) in
                                             if (error != nil) {
-                                                
+                                                print("Pic: Final Error")
                                                 completion(UIImage(named: "movie")!)
                                             } else {
+                                                print("Pic: 4")
                                                 completion(newImage!)
                                             }
                                         }
                                         
                                     } else {
+                                        print("Pic: 3")
                                         completion(newImage!)
                                     }
                                 }
                             } else {
+                                print("Pic: 2")
                                 completion(newImage!)
                             }
                         }
                         
                     } else {
+                        print("Pic: 1")
                         completion(newImage!)
                     }
                 }
             } else {
+                print("Pic: 0")
                 //Success code here
                 completion(newImage!)
             }
