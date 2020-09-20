@@ -66,8 +66,22 @@ class DecideVC: UIViewController {
         //Create and an option action
         let nextAction: UIAlertAction = UIAlertAction(title: "OK", style: .default) { action -> Void in
             print(inputTextField?.text)
-            let yuh = SessionManager.shared.getMovieSession(key: (inputTextField?.text!)!, completion: {
-                hey in
+            
+            let seshKey = (inputTextField?.text!)!
+            
+            SessionManager.shared.getSeshType(seshkey: seshKey, completion: {
+                bolbol in
+                if !bolbol {
+                    SessionManager.shared.getMovieSession(key: seshKey, completion: { [self]
+                        hey in
+                        startMovieSesh(sesh: hey)
+                    })
+                } else {
+                    SessionManager.shared.getFoodSession(key: seshKey, completion: { [self]
+                        hey in
+                        startFoodSesh(sesh: hey)
+                    })
+                }
                 
             })
            
@@ -82,6 +96,22 @@ class DecideVC: UIViewController {
         
         //Present the AlertController
         self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    func startFoodSesh(sesh: FoodSession) {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        
+        let vc = SwipeVC()
+        vc.foodSesh = sesh
+        vc.myType = .food
+        vc.user1 = false
+        vc.modalPresentationStyle = .fullScreen
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.present(vc, animated: false)
     }
     
     func startMovieSesh(sesh: MovieSession) {

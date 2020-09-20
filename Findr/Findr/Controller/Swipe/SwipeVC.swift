@@ -9,11 +9,14 @@ import PopBounceButton
 import Shuffle_iOS
 import SnapKit
 import SDWebImage
+import PopupDialog
+import Firebase
 
 class SwipeVC: UIViewController {
     
+    let db = Firestore.firestore()
     var movieSesh: MovieSession = MovieSession(User1: "", User2: "", kind: .both, genre: .any, key: "", movies: [])
-    
+    var seshKey = ""
     var foodSesh: FoodSession = FoodSession(User1: "", User2: "", priceRange: .any, minRating: .any, key: "", foods: [])
     
     var myType: sessionType = .food
@@ -66,14 +69,39 @@ class SwipeVC: UIViewController {
     
     private var cardModels = [FindrCardModel]()
     
+    @objc func checkForMatch() {
+        let docRef = db.collection("sessions").document(seshKey).collection("cards")
+        
+        docRef
+            .whereField("user1Swiped", isEqualTo: true)
+            .whereField("user2Swiped", isEqualTo: true)
+            .getDocuments() { [self] (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if let dataDescription = document.data() as? [String: Any] {
+                            handleMatch(doc: dataDescription)
+                        }
+                    }
+                }
+            }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: Selector(("checkForMatch")), userInfo: nil, repeats: true)
+        
         setupCardModels()
         
         if myType == .food {
+            
             keyLabel.text = foodSesh.key
+            seshKey = foodSesh.key
         } else {
             keyLabel.text = movieSesh.key
+            seshKey = movieSesh.key
         }
         cardStack.delegate = self
         cardStack.dataSource = self
@@ -106,7 +134,7 @@ class SwipeVC: UIViewController {
                     }
                 }
                 
-                cardModels.append(FindrCardModel(title: i.title, rating: Double(i.imdbScore), subtitle: genre, image: i.image))
+                cardModels.append(FindrCardModel(title: i.title, rating: Double(i.imdbScore), subtitle: genre, image: i.image, id: i.id))
             }
         } else {
             for i in foodSesh.foods {
@@ -123,9 +151,12 @@ class SwipeVC: UIViewController {
                     rangeLabel = "$$$$"
                 }
                 
-                cardModels.append(FindrCardModel(title: i.name, rating: Double(i.reviewScore), subtitle: rangeLabel, image: i.image))
+                let newName = String(i.distance) + "-" + i.name.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\'", with: "").replacingOccurrences(of: " ", with: "")
+                
+                cardModels.append(FindrCardModel(title: i.name, rating: Double(i.reviewScore), subtitle: rangeLabel, image: i.image, id: newName))
             }
         }
+        cardModels = cardModels.sorted { $0.id < $1.id }
     }
     
     
@@ -211,7 +242,7 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
         } else {
             card.content = FindrCardContentView(withImage: cardModels[index].image, isFood: false)
         }
-       
+        
         card.footer = FindrCardFooterView(withTitle: cardModels[index].title, subtitle:cardModels[index].subtitle, score: cardModels[index].rating)
         
         return card
@@ -231,6 +262,133 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
     
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
         print("Swiped \(direction) on \(cardModels[index].title)")
+        
+        let id = cardModels[index].id
+        let docRef = db.collection("sessions").document(seshKey).collection("cards").document(id)
+        
+        docRef.getDocument { [self] (document, error) in
+            if let document = document, document.exists {
+                if let dataDescription = document.data() as? [String: Any] {
+                    if let user1Swiped = dataDescription["user1Swiped"] as? Bool, let user2Swiped = dataDescription["user2Swiped"] as? Bool {
+                        if direction == .right {
+                            if user1 {
+                                docRef.updateData([
+                                    "user1Swiped": true
+                                ]) { err in
+                                    if let err = err {
+                                        print("Error updating document: \(err)")
+                                    } else {
+                                        print("Document successfully updated")
+                                    }
+                                }
+                                if user2Swiped {
+                                    handleMatch(doc: dataDescription)
+                                }
+                            } else {
+                                docRef.updateData([
+                                    "user2Swiped": true
+                                ]) { err in
+                                    if let err = err {
+                                        print("Error updating document: \(err)")
+                                    } else {
+                                        print("Document successfully updated")
+                                    }
+                                }
+                                
+                                if user1Swiped {
+                                    handleMatch(doc: dataDescription)
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
+    func handleMatch(doc: [String:Any]) {
+        Timer.cancelPreviousPerformRequests(withTarget: self, selector: Selector(("checkForMatch")), object: nil)
+        
+        var message = ""
+        var myImage = UIImage(named: "16")
+        let imageView = UIImageView()
+        let copy = doc["image"] as! String
+        
+        if myType == .food {
+            let dist = (doc["distance"] as! Double).rounded(toPlaces: 2)
+            message = "You and your partner matched on \(doc["name"] as! String)! Its only \(dist) miles away. Do you want to go to the google maps page?"
+            imageView.sd_setImage(with: URL(string: copy)) { [self] (newImage, error, cache, urls) in
+                if (error != nil) {
+                    myImage = UIImage(named: "food")
+                } else {
+                    //Success code here
+                    myImage = newImage
+                }
+            }
+        } else {
+            
+            message = "You and your partner matched on \(doc["title"] as! String)! Do you want to open it in Netflix?"
+        }
+        let title = "Its a match!"
+        
+        
+        // Create the dialog
+        
+        if myType == .movie {
+            SessionManager.shared.getMoviePicture(copy: copy, completion: {
+                myImg in
+                let popup = PopupDialog(title: title, message: message, image: myImage)
+                
+                let buttonOne = DefaultButton(title: "No Thanks!", dismissOnTap: true) {
+                    self.exitOut()
+                }
+                
+                let buttonTwo = DefaultButton(title: "Let's Go!", dismissOnTap: true) { [self] in
+                    
+                    guard let url = URL(string: "https://www.netflix.com/watch/80134431?trackId=13752289&tctx=0%2C0%2Ce574628a2d268b9d31ca12d15bc776a83b39bf7b%3Af15f3087a4a2ee6aa111581739cf1aebf55ed4e6%2Ce574628a2d268b9d31ca12d15bc776a83b39bf7b%3Af15f3087a4a2ee6aa111581739cf1aebf55ed4e6%2C%2C") else { return }
+                    UIApplication.shared.open(url)
+                    self.exitOut()
+                    
+                }
+                
+                
+                // Add buttons to dialog
+                // Alternatively, you can use popup.addButton(buttonOne)
+                // to add a single button
+                popup.addButtons([buttonTwo, buttonOne])
+                
+                // Present dialog
+                self.present(popup, animated: true, completion: nil)
+            })
+        } else {
+            let popup = PopupDialog(title: title, message: message, image: myImage)
+            
+            let buttonOne = DefaultButton(title: "No Thanks!", dismissOnTap: true) {
+                self.exitOut()
+            }
+            
+            let buttonTwo = DefaultButton(title: "Let's Go!", dismissOnTap: true) { [self] in
+                guard let url = URL(string: "https://www.google.com/maps?q=Subway,+Burke+Johnston+Student+Center,+G,+Blacksburg,+VA+24061&ftid=0x884d956cb4ad9ae7:0x48af140f2bd2388b&hl=en-US&gl=us&shorturl=1") else { return }
+                UIApplication.shared.open(url)
+                self.exitOut()
+            }
+            
+            
+            // Add buttons to dialog
+            // Alternatively, you can use popup.addButton(buttonOne)
+            // to add a single button
+            popup.addButtons([buttonTwo, buttonOne])
+            
+            // Present dialog
+            self.present(popup, animated: true, completion: nil)
+        }
+        
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {

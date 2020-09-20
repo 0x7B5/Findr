@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import CoreLocation
 import Firebase
+import SDWebImage
+import UIKit
 
 public class SessionManager {
     static let shared = SessionManager()
@@ -19,7 +21,7 @@ public class SessionManager {
     
     var movies = [Movie]()
     var foods = [Food]()
-   
+    
     
     func getMovieSession(key: String, completion: @escaping (MovieSession) -> ()) {
         var myMovies = [Movie]()
@@ -40,6 +42,23 @@ public class SessionManager {
         }
     }
     
+    func getSeshType(seshkey: String, completion: @escaping (Bool) -> ())  {
+        let docRef = db.collection("sessions").document(seshkey)
+        docRef.getDocument { [self] (document, error) in
+            if let document = document, document.exists {
+                if let dataDescription = document.data() as? [String: Any] {
+                    if dataDescription["kind"] as! String == "movie" {
+                        completion(false)
+                    } else {
+                        completion(true)
+                    }
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     
     
     func getFoodSession(key: String, completion: @escaping (FoodSession) -> ()) {
@@ -50,13 +69,59 @@ public class SessionManager {
                 return
             } else {
                 for document in querySnapshot!.documents {
-                    if let name = document.data()["image"] as? String {
+                    if let name = document.data()["name"] as? String {
                         let foodss = Food(name: name, image: document.data()["image"] as! String, type: document.data()["type"] as! String, distance: document.data()["distance"] as! Double, reviewScore: document.data()["reviewScore"] as! Double, gmapsLink: document.data()["gmapsLink"] as! String, priceRange: document.data()["priceRange"] as! Int)
                         myMovies.append(foodss)
                     }
                 }
                 let sesh = FoodSession(User1: "", User2: "", priceRange: .any, minRating: .any, key: key, foods: myMovies)
                 completion(sesh)
+            }
+        }
+    }
+    
+    func getMoviePicture(copy: String, completion: @escaping (UIImage) -> ()) {
+        var fullNameArr = copy.components(separatedBy: "/")
+        let newStringTwo = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/movie/" + fullNameArr[5] + "poster-342.jpg"
+        let newStringThree = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/show/" + fullNameArr[5] + "/poster-780.jpg"
+        let newStringFoo = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/show/" + fullNameArr[5] + "poster-342.jpg"
+        
+        let imageView = UIImageView()
+        
+        imageView.sd_setImage(with: URL(string: copy)) { [self] (newImage, error, cache, urls) in
+            if (error != nil) {
+                let newString = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/movie/" + fullNameArr[5] + "/poster-780.jpg"
+                imageView.sd_setImage(with: URL(string: newString)) { [self] (newImage, error, cache, urls) in
+                    if (error != nil) {
+                        imageView.sd_setImage(with: URL(string: newStringTwo)) { [self] (newImage, error, cache, urls) in
+                            if (error != nil) {
+                                imageView.sd_setImage(with: URL(string: newStringThree)) { [self] (newImage, error, cache, urls) in
+                                    if (error != nil) {
+                                        imageView.sd_setImage(with: URL(string: newStringFoo)) { [self] (newImage, error, cache, urls) in
+                                            if (error != nil) {
+                                                
+                                                completion(UIImage(named: "movie")!)
+                                            } else {
+                                                completion(newImage!)
+                                            }
+                                        }
+                                        
+                                    } else {
+                                        completion(newImage!)
+                                    }
+                                }
+                            } else {
+                                completion(newImage!)
+                            }
+                        }
+                        
+                    } else {
+                        completion(newImage!)
+                    }
+                }
+            } else {
+                //Success code here
+                completion(newImage!)
             }
         }
     }
@@ -153,7 +218,7 @@ public class SessionManager {
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
-                   
+                    
                 }
             }
             
@@ -244,6 +309,18 @@ public class SessionManager {
         default:
             return 0
         }
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
     }
     
     func randomString(length: Int) -> String {

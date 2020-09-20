@@ -51,23 +51,23 @@ class FindrCardContentView: UIView {
             let newStringTwo = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/movie/" + fullNameArr[5] + "poster-342.jpg"
             let newStringThree = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/show/" + fullNameArr[5] + "/poster-780.jpg"
             let newStringFoo = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/show/" + fullNameArr[5] + "poster-342.jpg"
+            
+            print(newStringTwo)
+            print(newStringThree)
+            print(newStringFoo)
            
             imageView.sd_setImage(with: URL(string: image)) { [self] (newImage, error, cache, urls) in
                 if (error != nil) {
-                    print("fuck")
                     let newString = fullNameArr[0] + "//" + fullNameArr[2] + "/" + "content/movie/" + fullNameArr[5] + "/poster-780.jpg"
+                    print(newString)
                     imageView.sd_setImage(with: URL(string: newString)) { [self] (newImage, error, cache, urls) in
                         if (error != nil) {
-                            print("fuck")
                             imageView.sd_setImage(with: URL(string: newStringTwo)) { [self] (newImage, error, cache, urls) in
                                 if (error != nil) {
-                                    print("fuck")
                                     imageView.sd_setImage(with: URL(string: newStringThree)) { [self] (newImage, error, cache, urls) in
                                         if (error != nil) {
-                                            print("fuck")
                                             imageView.sd_setImage(with: URL(string: newStringFoo)) { [self] (newImage, error, cache, urls) in
                                                 if (error != nil) {
-                                                    print("fuck")
                                                     imageView.image = UIImage(named: "movie")
                                                 } else {
                                                     imageView.image = newImage
