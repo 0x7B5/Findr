@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -38,55 +39,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let db = Firestore.firestore()
         
-        //        for i in 0...6000 {
-        //            SessionManager.shared.pullNewMovies(genre: "", number: 0, completion: { yuh in
-        //                if let title = yuh["title"] as? String, let id = yuh["id"] as? String, let description = yuh["overview"] as? String, let rating = yuh["imdb_rating"] as? Float, let genres = yuh["genres"] as? [Int] {
-        //
-        //                    let newMov = Movie(title: title, image: "https://img.reelgood.com/content/show/\(id)/poster-780.jpg", id: id, genre: genres, description: description, imdbScore: rating, trailerLink: "")
-        //                    movies.append(newMov)
-        //                    print(newMov)
-        //                    print(movies.count)
-        //                    print("")
-        //
-        //                    db.collection("movies").document(id).setData([
-        //                        "title": title,
-        //                        "image": "https://img.reelgood.com/content/show/\(id)/poster-780.jpg",
-        //                        "id": id,
-        //                        "genre": genres,
-        //                        "description": description,
-        //                        "imdbScore": rating,
-        //                        "trailerLink": ""
-        //                    ]) { err in
-        //                        if let err = err {
-        //                            print("Error writing document: \(err)")
-        //                        } else {
-        //                            print("Document successfully written!")
-        //                        }
-        //                    }
-        //
-        ////                    SessionManager.shared.getTrailer(id: id, completion: {
-        ////                        hey in
-        ////
-        ////                        if let trailerR = hey["trailer"] as? [String:Any] {
-        ////                            if let site = trailerR["site"] as? String, let key = trailerR["key"] as? String{
-        ////                                if site == "youtube" {
-        ////                                    let newMov = Movie(title: title, Image: "https://img.reelgood.com/content/show/\(id)/poster-780.jpg", id: id, genre: genres, description: description, imdbScore: rating, trailerLink: "https://www.youtube.com/watch?v=\(key)")
-        ////                                    movies.append(newMov)
-        ////                                    print(newMov)
-        ////                                    print(movies.count)
-        ////                                    print("")
-        ////                                }
-        ////                            }
-        ////                        }
-        ////
-        ////
-        ////
-        ////                    })
-        //
-        //                }
-        //            })
-        //        }
-        
+//        for i in 0...6000 {
+//            SessionManager.shared.pullNewMovies(genre: "", number: 0, completion: { yuh in
+//                if let title = yuh["title"] as? String, let id = yuh["id"] as? String, let description = yuh["overview"] as? String, let rating = yuh["imdb_rating"] as? Float, let genres = yuh["genres"] as? [Int] {
+//                    
+//                    let newMov = Movie(title: title, image: "https://img.reelgood.com/content/show/\(id)/poster-780.jpg", id: id, genre: genres, description: description, imdbScore: rating, trailerLink: "")
+//                    movies.append(newMov)
+//                    print(newMov)
+//                    print(movies.count)
+//                    print("")
+//                    
+//                    db.collection("movies").document(id).setData([
+//                        "title": title,
+//                        "image": "https://img.reelgood.com/content/show/\(id)/poster-780.jpg",
+//                        "id": id,
+//                        "genre": genres,
+//                        "description": description,
+//                        "imdbScore": rating,
+//                        "trailerLink": ""
+//                    ]) { err in
+//                        if let err = err {
+//                            print("Error writing document: \(err)")
+//                        } else {
+//                            print("Document successfully written!")
+//                        }
+//                    }
+//                    
+//                }
+//            })
+//        }
+//        
         
         return true
     }

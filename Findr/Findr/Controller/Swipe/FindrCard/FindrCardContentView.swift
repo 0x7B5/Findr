@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FindrCardContentView: UIView {
     
@@ -16,7 +17,7 @@ class FindrCardContentView: UIView {
         return background
     }()
     
-    private let imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -31,9 +32,19 @@ class FindrCardContentView: UIView {
         return gradient
     }()
     
-    init(withImage image: UIImage?) {
+    init(withImage image: String, isFood: Bool) {
         super.init(frame: .zero)
-        imageView.image = image
+        
+        if isFood {
+            imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "food"))
+            
+        } else {
+            var substring = image.dropLast(7)
+            let newString = String(substring) + "342.jpg"
+            imageView.sd_setImage(with: URL(string: newString), placeholderImage: UIImage(named: "movie"))
+            imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "movie"))
+           
+        }
         initialize()
     }
     

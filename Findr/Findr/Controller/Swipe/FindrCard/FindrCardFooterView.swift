@@ -38,13 +38,14 @@ public class FindrCardFooterView: UIView {
                                                             attributes: NSAttributedString.Key.subtitleAttributes))
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 4
-            paragraphStyle.lineBreakMode = .byTruncatingTail
+            paragraphStyle.lineBreakMode = .byClipping
             attributedText.addAttributes([NSAttributedString.Key.paragraphStyle: paragraphStyle],
                                          range: NSRange(location: 0, length: attributedText.length))
             label.numberOfLines = 2
         }
         
         label.attributedText = attributedText
+        label.adjustsFontSizeToFitWidth = true
         
         rating = {
             let label = UILabel()
@@ -63,10 +64,10 @@ public class FindrCardFooterView: UIView {
         let padding: CGFloat = 20
         label.frame = CGRect(x: padding,
                              y: bounds.height - label.intrinsicContentSize.height - padding,
-                             width: bounds.width - 2 * padding,
+                             width: bounds.width * 0.60,
                              height: label.intrinsicContentSize.height)
         rating.frame = CGRect(x: bounds.width - 95,
-                              y: bounds.height - rating.intrinsicContentSize.height - 15,
+                              y: bounds.height - rating.intrinsicContentSize.height - 13,
                               width: bounds.width - 2 * padding,
                               height: rating.intrinsicContentSize.height)
     }
@@ -84,7 +85,7 @@ extension NSAttributedString.Key {
     
     static var titleAttributes: [NSAttributedString.Key: Any] = [
         // swiftlint:disable:next force_unwrapping
-        NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 24)!,
+        NSAttributedString.Key.font: UIFont(name: "ArialRoundedMTBold", size: 22)!,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.shadow: NSAttributedString.Key.shadowAttribute
     ]

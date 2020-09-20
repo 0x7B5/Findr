@@ -8,8 +8,8 @@
 import UIKit
 
 struct FindrCardModel {
-  let name: String
-  let age: Int
-  let occupation: String?
-  let image: UIImage?
+  let title: String
+  let rating: Double
+  let subtitle: String
+  let image: String
 }

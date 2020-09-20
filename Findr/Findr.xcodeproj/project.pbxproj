@@ -39,6 +39,8 @@
 		CC6CD23F25170FEF00B916BA /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */; };
 		CC6CD2602517128A00B916BA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */; };
 		CC6CD263251725DA00B916BA /* MovieFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD262251725DA00B916BA /* MovieFooterView.swift */; };
+		CC91B331251747BF002798B7 /* TextfieldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC91B330251747BF002798B7 /* TextfieldVC.swift */; };
+		CC91B334251747F1002798B7 /* TFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC91B333251747F1002798B7 /* TFView.swift */; };
 		E478796868CB04FA70BACE15 /* Pods_Findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 		CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
 		CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		CC6CD262251725DA00B916BA /* MovieFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFooterView.swift; sourceTree = "<group>"; };
+		CC91B330251747BF002798B7 /* TextfieldVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldVC.swift; sourceTree = "<group>"; };
+		CC91B333251747F1002798B7 /* TFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,7 @@
 				CC638F542515953D0019D2AA /* DecideView.swift */,
 				CC33015F2515A99E00C8FD07 /* StartSessionView.swift */,
 				CC6CD21A2517088100B916BA /* SwipeView.swift */,
+				CC91B333251747F1002798B7 /* TFView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				CC3301712515B70400C8FD07 /* CreatingSession */,
 				CC638F10251575460019D2AA /* InitialVC.swift */,
 				CC638F512515950C0019D2AA /* DecideVC.swift */,
+				CC91B330251747BF002798B7 /* TextfieldVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,12 +377,14 @@
 				CC6CD2602517128A00B916BA /* UIView+Extensions.swift in Sources */,
 				CC638F34251576350019D2AA /* Session.swift in Sources */,
 				CC3301732515B73200C8FD07 /* MovieSessionVC.swift in Sources */,
+				CC91B331251747BF002798B7 /* TextfieldVC.swift in Sources */,
 				CC3301762515B73B00C8FD07 /* ResturantSessionVC.swift in Sources */,
 				CC6CD23625170F9A00B916BA /* FindrCardOverlay.swift in Sources */,
 				CC638F37251576420019D2AA /* SignUpView.swift in Sources */,
 				CC3301602515A99E00C8FD07 /* StartSessionView.swift in Sources */,
 				CC6CD21B2517088100B916BA /* SwipeView.swift in Sources */,
 				CC6CD23C25170FD600B916BA /* FindrButton.swift in Sources */,
+				CC91B334251747F1002798B7 /* TFView.swift in Sources */,
 				CC638F31251576280019D2AA /* Food.swift in Sources */,
 				CC6CD263251725DA00B916BA /* MovieFooterView.swift in Sources */,
 				CC638F2D251576200019D2AA /* Movie.swift in Sources */,

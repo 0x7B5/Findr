@@ -19,6 +19,47 @@ public class SessionManager {
     
     var movies = [Movie]()
     var foods = [Food]()
+   
+    
+    func getMovieSession(key: String, completion: @escaping (MovieSession) -> ()) {
+        var myMovies = [Movie]()
+        db.collection("sessions").document(key).collection("cards").getDocuments() { [self] (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                for document in querySnapshot!.documents {
+                    if let name = document.data()["title"] as? String {
+                        let foodss = Movie(title: document.data()["title"] as! String, image: document.data()["image"] as! String, id: document.data()["id"] as! String, genre: document.data()["genre"] as! [Int], description: document.data()["description"] as! String, imdbScore: document.data()["imdbScore"] as! Float, trailerLink: document.data()["trailerLink"] as! String)
+                        myMovies.append(foodss)
+                    }
+                }
+                let sesh = MovieSession(User1: "", User2: "", kind: .both, genre: .any, key: key, movies: myMovies)
+                completion(sesh)
+            }
+        }
+    }
+    
+    
+    
+    func getFoodSession(key: String, completion: @escaping (FoodSession) -> ()) {
+        var myMovies = [Food]()
+        db.collection("sessions").document(key).collection("cards").getDocuments() { [self] (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                for document in querySnapshot!.documents {
+                    if let name = document.data()["image"] as? String {
+                        let foodss = Food(name: name, image: document.data()["image"] as! String, type: document.data()["type"] as! String, distance: document.data()["distance"] as! Double, reviewScore: document.data()["reviewScore"] as! Double, gmapsLink: document.data()["gmapsLink"] as! String, priceRange: document.data()["priceRange"] as! Int)
+                        myMovies.append(foodss)
+                    }
+                }
+                let sesh = FoodSession(User1: "", User2: "", priceRange: .any, minRating: .any, key: key, foods: myMovies)
+                completion(sesh)
+            }
+        }
+    }
     
     func startMovieSession(genre: movieGenre, kind: movieKind, completion: @escaping (MovieSession?) -> ()) {
         

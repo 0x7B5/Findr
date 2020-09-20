@@ -8,6 +8,7 @@
 import PopBounceButton
 import Shuffle_iOS
 import SnapKit
+import SDWebImage
 
 class SwipeVC: UIViewController {
     
@@ -16,6 +17,7 @@ class SwipeVC: UIViewController {
     var foodSesh: FoodSession = FoodSession(User1: "", User2: "", priceRange: .any, minRating: .any, key: "", foods: [])
     
     var myType: sessionType = .food
+    var user1 = false
     private let cardStack = SwipeCardStack()
     
     private let buttonStackView = ButtonStackView()
@@ -62,50 +64,71 @@ class SwipeVC: UIViewController {
         self.present(vc, animated: false)
     }
     
-    private let cardModels = [
-        FindrCardModel(name: "Michelle",
-                       age: 26,
-                       occupation: "Graphic Designer",
-                       image: UIImage(named: "michelle")),
-        FindrCardModel(name: "Joshua",
-                       age: 27,
-                       occupation: "Business Services Sales Representative",
-                       image: UIImage(named: "joshua")),
-        FindrCardModel(name: "Daiane",
-                       age: 23,
-                       occupation: "Graduate Student",
-                       image: UIImage(named: "daiane")),
-        FindrCardModel(name: "Julian",
-                       age: 25,
-                       occupation: "Model/Photographer",
-                       image: UIImage(named: "julian")),
-        FindrCardModel(name: "Andrew",
-                       age: 26,
-                       occupation: nil,
-                       image: UIImage(named: "andrew")),
-        FindrCardModel(name: "Bailey",
-                       age: 25,
-                       occupation: "Software Engineer",
-                       image: UIImage(named: "bailey")),
-        FindrCardModel(name: "Rachel",
-                       age: 27,
-                       occupation: "Interior Designer",
-                       image: UIImage(named: "rachel"))
-    ]
+    private var cardModels = [FindrCardModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCardModels()
+        
+        if myType == .food {
+            keyLabel.text = foodSesh.key
+        } else {
+            keyLabel.text = movieSesh.key
+        }
         cardStack.delegate = self
         cardStack.dataSource = self
         buttonStackView.delegate = self
         
         layoutButtonStackView()
         layoutCardStackView()
-//        configureBackgroundGradient()
+        
         view.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
     }
     
-   
+    func setupCardModels() {
+        if myType == .movie {
+            for i in movieSesh.movies {
+                
+                var genre = "Avaliable on Netflix"
+                for x in i.genre {
+                    if x == 5 {
+                        genre = "Action"
+                        break
+                    } else if x == 9 {
+                        genre = "Comedy"
+                        break
+                    } else if x == 19 {
+                        genre = "Horror"
+                        break
+                    } else if x == 4 {
+                        genre = "Romance"
+                        break
+                    }
+                }
+                
+                cardModels.append(FindrCardModel(title: i.title, rating: Double(i.imdbScore), subtitle: genre, image: i.image))
+            }
+        } else {
+            for i in foodSesh.foods {
+                
+                var rangeLabel = "$"
+                
+                if i.priceRange == 1 {
+                    rangeLabel = "$"
+                } else if i.priceRange == 2 {
+                    rangeLabel = "$$"
+                } else if i.priceRange == 3 {
+                    rangeLabel = "$$$"
+                } else if i.priceRange == 4 {
+                    rangeLabel = "$$$$"
+                }
+                
+                cardModels.append(FindrCardModel(title: i.name, rating: Double(i.reviewScore), subtitle: rangeLabel, image: i.image))
+            }
+        }
+    }
+    
+    
     
     private func configureBackgroundGradient() {
         let backgroundGray = UIColor(red: 244 / 255, green: 247 / 255, blue: 250 / 255, alpha: 1)
@@ -149,9 +172,9 @@ class SwipeVC: UIViewController {
         }
         
         topView.anchor(top: view.topAnchor,
-                         left: view.safeAreaLayoutGuide.leftAnchor,
-                         right: view.safeAreaLayoutGuide.rightAnchor,
-                         height: 100)
+                       left: view.safeAreaLayoutGuide.leftAnchor,
+                       right: view.safeAreaLayoutGuide.rightAnchor,
+                       height: 100)
         
         cardStack.anchor(top: topView.bottomAnchor,
                          left: view.safeAreaLayoutGuide.leftAnchor,
@@ -160,7 +183,7 @@ class SwipeVC: UIViewController {
                          paddingTop: 20,
                          paddingLeft: 10, paddingBottom: 20,
                          paddingRight: 10
-                         )
+        )
     }
     
     @objc
@@ -182,9 +205,14 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
             card.setOverlay(FindrCardOverlay(direction: direction), forDirection: direction)
         }
         
-        let model = cardModels[index]
-        card.content = FindrCardContentView(withImage: model.image)
-        card.footer = FindrCardFooterView(withTitle: "The Last Dance", subtitle: "Comedy", score: 3.2)
+        
+        if myType == .food {
+            card.content = FindrCardContentView(withImage: cardModels[index].image, isFood: true)
+        } else {
+            card.content = FindrCardContentView(withImage: cardModels[index].image, isFood: false)
+        }
+       
+        card.footer = FindrCardFooterView(withTitle: cardModels[index].title, subtitle:cardModels[index].subtitle, score: cardModels[index].rating)
         
         return card
     }
@@ -198,11 +226,11 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didUndoCardAt index: Int, from direction: SwipeDirection) {
-        print("Undo \(direction) swipe on \(cardModels[index].name)")
+        print("Undo \(direction) swipe on \(cardModels[index].title)")
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
-        print("Swiped \(direction) on \(cardModels[index].name)")
+        print("Swiped \(direction) on \(cardModels[index].title)")
     }
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
@@ -212,13 +240,13 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
     func didTapButton(button: FindrButton) {
         switch button.tag {
         case 1:
-//            cardStack.undoLastSwipe(animated: true)
-        print("undo")
+            //            cardStack.undoLastSwipe(animated: true)
+            print("undo")
         case 2:
             cardStack.swipe(.left, animated: true)
         case 3:
-//            cardStack.swipe(.up, animated: true)
-        print("up")
+            //            cardStack.swipe(.up, animated: true)
+            print("up")
         case 4:
             cardStack.swipe(.right, animated: true)
         case 5:

@@ -62,6 +62,7 @@ class StartSessionVC: UIViewController {
         let vc = SwipeVC()
         vc.movieSesh = sesh
         vc.myType = .movie
+        vc.user1 = true
         vc.modalPresentationStyle = .fullScreen
         self.view.window!.layer.add(transition, forKey: nil)
         self.present(vc, animated: false)
@@ -77,6 +78,7 @@ class StartSessionVC: UIViewController {
         let vc = SwipeVC()
         vc.foodSesh = sesh
         vc.myType = .food
+        vc.user1 = true
         vc.modalPresentationStyle = .fullScreen
         self.view.window!.layer.add(transition, forKey: nil)
         self.present(vc, animated: false)
