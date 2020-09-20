@@ -24,6 +24,7 @@ public struct FoodSession {
     let priceRange: PriceRange
     let minRating: MinRating
     let key: String
+    let foods: [Movie]
 }
 
 public struct MovieSession {
@@ -32,13 +33,14 @@ public struct MovieSession {
     let kind: movieKind
     let genre: movieGenre
     let key: String
+    let movies: [Movie]
 }
 
-enum MinRating {
+enum MinRating: String {
     case five, four, three, any
 }
 
-enum PriceRange {
+enum PriceRange: String {
     case three, two, one, any
 }
 

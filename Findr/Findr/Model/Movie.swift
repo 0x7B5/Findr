@@ -16,4 +16,6 @@ public struct Movie {
     let description: String
     let imdbScore: Float
     let trailerLink: String
+    let user1Swiped: Bool = false
+    let user2Swiped: Bool = false
 }

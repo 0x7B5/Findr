@@ -17,4 +17,6 @@ public struct Food {
     let reviewScore: Double
     let gmapsLink: String
     let priceRange: Int
+    let user1Swiped: Bool = false
+    let user2Swiped: Bool = false
 }

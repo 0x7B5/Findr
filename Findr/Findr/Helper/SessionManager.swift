@@ -15,6 +15,162 @@ public class SessionManager {
     
     private init() { }
     
+    let db = Firestore.firestore()
+    
+    var movies = [Movie]()
+    var foods = [Food]()
+    
+    func startFoodSession(rating: MinRating, range: PriceRange, completion: @escaping (String) -> ()) {
+        
+        self.getAllFood(completion: { foods in
+            
+            let key = self.randomString(length: 6)
+            self.db.collection("sessions").document(key).setData([
+                "key": key,
+                "users": ["user1", "user2"],
+                "kind": "food",
+                "priceRange": range.rawValue,
+                "rating": rating.rawValue
+            ]) { err in
+                if let err = err {
+                    print("Error writing document: \(err)")
+                } else {
+                    print("Document successfully written!")
+                }
+            }
+            
+            var newFood = [Food]()
+            
+            if rating != .any || range != .any {
+                for i in foods {
+                    let tempRating = self.ratingToInt(rating: rating)
+                    let tempRange = self.rangeToInt(range: range)
+                    
+                    if i.reviewScore >= Double(tempRating) && i.priceRange <= tempRange {
+                        
+                        newFood.append(i)
+                        
+                        let newName = String(i.distance) + "-" + i.name.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\'", with: "").replacingOccurrences(of: " ", with: "")
+                        
+                        self.db.collection("sessions").document(key).collection("cards").document(newName).setData([
+                            "name": i.name,
+                            "image": i.image,
+                            "type": i.type,
+                            "distance": i.distance,
+                            "reviewScore": i.reviewScore,
+                            "gmapsLink": i.gmapsLink,
+                            "priceRange": i.priceRange,
+                            "user1Swiped": false,
+                            "user2Swiped": false
+                        ]) { err in
+                            if let err = err {
+                                print("Error writing document: \(err)")
+                            } else {
+                                print("Document successfully written!")
+                            }
+                        }
+                    }
+                }
+            } else {
+                newFood = foods
+                
+                for i in newFood {
+                    let newName = String(i.distance) + "-" + i.name.replacingOccurrences(of: "\"", with: "").replacingOccurrences(of: "\'", with: "").replacingOccurrences(of: " ", with: "")
+                    self.db.collection("sessions").document(key).collection("cards").document(newName).setData([
+                        "name": i.name,
+                        "image": i.image,
+                        "type": i.type,
+                        "distance": i.distance,
+                        "reviewScore": i.reviewScore,
+                        "gmapsLink": i.gmapsLink,
+                        "priceRange": i.priceRange,
+                        "user1Swiped": false,
+                        "user2Swiped": false
+                    ]) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                }
+            }
+            completion(key)
+        })
+        completion("")
+    }
+    
+    func rangeToInt(range: PriceRange) -> Int {
+        switch range {
+        case .three:
+            return 3
+        case .two:
+            return 2
+        case .one:
+            return 1
+        case .any:
+            return 0
+        default:
+            return 0
+        }
+    }
+    
+    func ratingToInt(rating: MinRating) -> Int {
+        switch rating {
+        case .four:
+            return 4
+        case .three:
+            return 3
+        case .any:
+            return 0
+        default:
+            return 0
+        }
+    }
+    
+    func randomString(length: Int) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".uppercased()
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+    
+    func getAllFood(completion: @escaping ([Food]) -> ()) {
+        foods.removeAll()
+        db.collection("restaurants").getDocuments() { [self] (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion([])
+            } else {
+                for document in querySnapshot!.documents {
+                    if let name = document.data()["name"] as? String {
+                        let foodss = Food(name: name, image: document.data()["image"] as! String, type: document.data()["type"] as! String, distance: document.data()["distance"] as! Double, reviewScore: document.data()["reviewScore"] as! Double, gmapsLink: document.data()["gmapsLink"] as! String, priceRange: document.data()["priceRange"] as! Int)
+                        foods.append(foodss)
+                    }
+                }
+                completion(foods)
+            }
+        }
+        completion(foods)
+    }
+    
+    func getAllMovies(completion: @escaping ([Movie]) -> ()) {
+        movies.removeAll()
+        db.collection("movies").getDocuments() { [self] (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                completion([])
+            } else {
+                for document in querySnapshot!.documents {
+                    if let id = document.data()["id"] as? String {
+                        let newMovie = Movie(title: document.data()["title"] as! String, image: document.data()["image"] as! String, id: id, genre: document.data()["genre"] as! [Int], description: document.data()["description"] as! String, imdbScore: document.data()["imdbScore"] as! Float, trailerLink: document.data()["trailerLink"] as! String)
+                        
+                        movies.append(newMovie)
+                    }
+                }
+                completion(movies)
+            }
+        }
+        completion(movies)
+    }
     
     func pullNewMovies(genre: String, number: Int, completion: @escaping ([String: Any]) -> ()) {
         if let url = URL(string: "https://api.reelgood.com/v3.0/content/roulette/netflix?availability=onAnySource&content_kind=both&nocache=true&region=us") {
@@ -82,7 +238,6 @@ public class SessionManager {
     
     func parseGMapsResults(json: [String:Any]) -> [Food]{
         var nextToken = ""
-        let db = Firestore.firestore()
         var foods = [Food]()
         if let results = json["results"] as? [[String: Any]] {
             

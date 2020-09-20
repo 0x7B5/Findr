@@ -87,11 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //            })
         //        }
         
-        var nextToken = ""
-        
-        
-        
-       
+        SessionManager.shared.startFoodSession(rating: .four, range: .three, completion: { yuh in
+            print(yuh)
+        })
         
         return true
     }

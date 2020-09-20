@@ -60,6 +60,14 @@ class StartSessionVC: UIViewController {
                 if let rating = userInfo["rating"] as? MinRating, let range = userInfo["pricerange"] as? PriceRange {
                     print("Rating: \(rating)")
                     print("Range: \(range)")
+                    
+//                    SessionManager.shared.startFoodSession(rating: rating, range: range, completion: {
+//                        sesh in
+//                        
+//                        
+//                    })
+                    
+                    
                 } else {
                     idkError()
                 }
