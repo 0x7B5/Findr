@@ -87,9 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //            })
         //        }
         
-        SessionManager.shared.startMovieSession(genre: .comedy, kind: .both, completion: { yuh in
-            print(yuh)
-        })
         
         return true
     }

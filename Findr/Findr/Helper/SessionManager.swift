@@ -20,7 +20,7 @@ public class SessionManager {
     var movies = [Movie]()
     var foods = [Food]()
     
-    func startMovieSession(genre: movieGenre, kind: movieKind, completion: @escaping (String) -> ()) {
+    func startMovieSession(genre: movieGenre, kind: movieKind, completion: @escaping (MovieSession?) -> ()) {
         
         self.getAllMovies(completion: { [self] foods in
             
@@ -35,7 +35,7 @@ public class SessionManager {
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
-                    print("Document successfully written!")
+                    
                 }
             }
             
@@ -68,8 +68,11 @@ public class SessionManager {
             
             let finalArray = newMovie.choose(50)
             
+            var newArray: [Movie] = []
+            
             
             for i in finalArray {
+                newArray.append(i)
                 self.db.collection("sessions").document(key).collection("cards").document(i.id).setData([
                     "title": i.title,
                     "image": i.image,
@@ -84,17 +87,17 @@ public class SessionManager {
                     if let err = err {
                         print("Error writing document: \(err)")
                     } else {
-                        print("Document successfully written!")
+                        
                     }
                 }
             }
-            completion(key)
+            let sesh = MovieSession(User1: "", User2: "", kind: kind, genre: genre, key: key, movies: newArray)
+            completion(sesh)
             
         })
-        completion("")
     }
     
-    func startFoodSession(rating: MinRating, range: PriceRange, completion: @escaping (String) -> ()) {
+    func startFoodSession(rating: MinRating, range: PriceRange, completion: @escaping (FoodSession?) -> ()) {
         
         self.getAllFood(completion: { foods in
             
@@ -109,7 +112,7 @@ public class SessionManager {
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
-                    print("Document successfully written!")
+                   
                 }
             }
             
@@ -140,7 +143,7 @@ public class SessionManager {
                             if let err = err {
                                 print("Error writing document: \(err)")
                             } else {
-                                print("Document successfully written!")
+                                
                             }
                         }
                     }
@@ -164,14 +167,14 @@ public class SessionManager {
                         if let err = err {
                             print("Error writing document: \(err)")
                         } else {
-                            print("Document successfully written!")
+                            
                         }
                     }
                 }
             }
-            completion(key)
+            let sesh = FoodSession(User1: "", User2: "", priceRange: range, minRating: rating, key: key, foods: newFood)
+            completion(sesh)
         })
-        completion("")
     }
     
     func rangeToInt(range: PriceRange) -> Int {
@@ -223,7 +226,6 @@ public class SessionManager {
                 completion(foods)
             }
         }
-        completion(foods)
     }
     
     func getAllMovies(completion: @escaping ([Movie]) -> ()) {
@@ -243,7 +245,6 @@ public class SessionManager {
                 completion(movies)
             }
         }
-        completion(movies)
     }
     
     func pullNewMovies(genre: String, number: Int, completion: @escaping ([String: Any]) -> ()) {
@@ -344,7 +345,7 @@ public class SessionManager {
                             if let err = err {
                                 print("Error writing document: \(err)")
                             } else {
-                                print("Document successfully written!")
+                                
                             }
                         }
                         

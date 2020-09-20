@@ -52,20 +52,52 @@ class StartSessionVC: UIViewController {
         
     }
     
+    func goToMovieSwipe(sesh: MovieSession) {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        
+        let vc = SwipeVC()
+        vc.movieSesh = sesh
+        vc.myType = .movie
+        vc.modalPresentationStyle = .fullScreen
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.present(vc, animated: false)
+    }
+    
+    func goToFoodSwipe(sesh: FoodSession) {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromRight
+        
+        let vc = SwipeVC()
+        vc.foodSesh = sesh
+        vc.myType = .food
+        vc.modalPresentationStyle = .fullScreen
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.present(vc, animated: false)
+    }
+    
     @objc func startSesh(notification:NSNotification) {
         let userInfo:Dictionary<String,Any> = notification.userInfo as! Dictionary<String,Any>
         
         if let val = userInfo["type"] as? String {
             if val == "food" {
                 if let rating = userInfo["rating"] as? MinRating, let range = userInfo["pricerange"] as? PriceRange {
-                    print("Rating: \(rating)")
-                    print("Range: \(range)")
                     
-//                    SessionManager.shared.startFoodSession(rating: rating, range: range, completion: {
-//                        sesh in
-//                        
-//                        
-//                    })
+                    SessionManager.shared.startFoodSession(rating: rating, range: range, completion: {
+                        sesh in
+                        
+                        if sesh != nil {
+                            self.goToFoodSwipe(sesh: sesh!)
+                        } else {
+                            print("fuck")
+                        }
+                    })
                     
                     
                 } else {
@@ -73,8 +105,17 @@ class StartSessionVC: UIViewController {
                 }
             } else if val == "movie" {
                 if let genre = userInfo["genre"] as? movieGenre, let kind = userInfo["kind"] as? movieKind {
-                    print("Genre: \(genre)")
-                    print("Kind: \(kind)")
+                    SessionManager.shared.startMovieSession(genre: genre, kind: kind, completion: {
+                        sesh in
+                        
+                        if sesh != nil {
+                            self.goToMovieSwipe(sesh: sesh!)
+                        } else {
+                            print("fuck")
+                        }
+                        
+                        
+                    })
                 } else {
                     idkError()
                 }

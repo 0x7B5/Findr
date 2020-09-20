@@ -30,6 +30,7 @@
 		CC638F522515950C0019D2AA /* DecideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F512515950C0019D2AA /* DecideVC.swift */; };
 		CC638F552515953D0019D2AA /* DecideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F542515953D0019D2AA /* DecideView.swift */; };
 		CC6CD2162516F2FE00B916BA /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD2152516F2FD00B916BA /* Collection+Extensions.swift */; };
+		CC6CD21B2517088100B916BA /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD21A2517088100B916BA /* SwipeView.swift */; };
 		E478796868CB04FA70BACE15 /* Pods_Findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		CC638F512515950C0019D2AA /* DecideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideVC.swift; sourceTree = "<group>"; };
 		CC638F542515953D0019D2AA /* DecideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideView.swift; sourceTree = "<group>"; };
 		CC6CD2152516F2FD00B916BA /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		CC6CD21A2517088100B916BA /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				CC638F392515764A0019D2AA /* CurvedButton.swift */,
 				CC638F542515953D0019D2AA /* DecideView.swift */,
 				CC33015F2515A99E00C8FD07 /* StartSessionView.swift */,
+				CC6CD21A2517088100B916BA /* SwipeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				CC3301762515B73B00C8FD07 /* ResturantSessionVC.swift in Sources */,
 				CC638F37251576420019D2AA /* SignUpView.swift in Sources */,
 				CC3301602515A99E00C8FD07 /* StartSessionView.swift in Sources */,
+				CC6CD21B2517088100B916BA /* SwipeView.swift in Sources */,
 				CC638F31251576280019D2AA /* Food.swift in Sources */,
 				CC638F2D251576200019D2AA /* Movie.swift in Sources */,
 				CC638F0F251575460019D2AA /* SceneDelegate.swift in Sources */,

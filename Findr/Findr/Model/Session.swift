@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import Firebase
+
+let db = Firestore.firestore()
 
 enum sessionType {
     case food, movie
@@ -24,7 +27,7 @@ public struct FoodSession {
     let priceRange: PriceRange
     let minRating: MinRating
     let key: String
-    let foods: [Movie]
+    var foods: [Food]
 }
 
 public struct MovieSession {
