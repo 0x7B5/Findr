@@ -184,7 +184,7 @@ extension SwipeVC: ButtonStackViewDelegate, SwipeCardStackDataSource, SwipeCardS
         
         let model = cardModels[index]
         card.content = FindrCardContentView(withImage: model.image)
-//        card.footer = FindrCardContentView(withTitle: "\(model.name), \(model.age)", subtitle: model.occupation)
+        card.footer = FindrCardFooterView(withTitle: "The Last Dance", subtitle: "Comedy", score: 3.2)
         
         return card
     }

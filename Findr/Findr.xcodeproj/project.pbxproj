@@ -38,6 +38,7 @@
 		CC6CD23C25170FD600B916BA /* FindrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23B25170FD600B916BA /* FindrButton.swift */; };
 		CC6CD23F25170FEF00B916BA /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */; };
 		CC6CD2602517128A00B916BA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */; };
+		CC6CD263251725DA00B916BA /* MovieFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD262251725DA00B916BA /* MovieFooterView.swift */; };
 		E478796868CB04FA70BACE15 /* Pods_Findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		CC6CD23B25170FD600B916BA /* FindrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindrButton.swift; sourceTree = "<group>"; };
 		CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
 		CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		CC6CD262251725DA00B916BA /* MovieFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				CC6CD23225170F8100B916BA /* FindrCardFooterView.swift */,
 				CC6CD23525170F9A00B916BA /* FindrCardOverlay.swift */,
 				CC6CD23825170FBE00B916BA /* FindrCardContentView.swift */,
+				CC6CD262251725DA00B916BA /* MovieFooterView.swift */,
 			);
 			path = FindrCard;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				CC6CD21B2517088100B916BA /* SwipeView.swift in Sources */,
 				CC6CD23C25170FD600B916BA /* FindrButton.swift in Sources */,
 				CC638F31251576280019D2AA /* Food.swift in Sources */,
+				CC6CD263251725DA00B916BA /* MovieFooterView.swift in Sources */,
 				CC638F2D251576200019D2AA /* Movie.swift in Sources */,
 				CC638F0F251575460019D2AA /* SceneDelegate.swift in Sources */,
 				CC638F522515950C0019D2AA /* DecideVC.swift in Sources */,
