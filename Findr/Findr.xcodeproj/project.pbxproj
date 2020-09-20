@@ -31,6 +31,13 @@
 		CC638F552515953D0019D2AA /* DecideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC638F542515953D0019D2AA /* DecideView.swift */; };
 		CC6CD2162516F2FE00B916BA /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD2152516F2FD00B916BA /* Collection+Extensions.swift */; };
 		CC6CD21B2517088100B916BA /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD21A2517088100B916BA /* SwipeView.swift */; };
+		CC6CD22F25170F4700B916BA /* FindrCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD22E25170F4700B916BA /* FindrCardModel.swift */; };
+		CC6CD23325170F8100B916BA /* FindrCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23225170F8100B916BA /* FindrCardFooterView.swift */; };
+		CC6CD23625170F9A00B916BA /* FindrCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23525170F9A00B916BA /* FindrCardOverlay.swift */; };
+		CC6CD23925170FBE00B916BA /* FindrCardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23825170FBE00B916BA /* FindrCardContentView.swift */; };
+		CC6CD23C25170FD600B916BA /* FindrButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23B25170FD600B916BA /* FindrButton.swift */; };
+		CC6CD23F25170FEF00B916BA /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */; };
+		CC6CD2602517128A00B916BA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */; };
 		E478796868CB04FA70BACE15 /* Pods_Findr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B952DFDF57ED2987796DEB16 /* Pods_Findr.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +71,13 @@
 		CC638F542515953D0019D2AA /* DecideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecideView.swift; sourceTree = "<group>"; };
 		CC6CD2152516F2FD00B916BA /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		CC6CD21A2517088100B916BA /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		CC6CD22E25170F4700B916BA /* FindrCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindrCardModel.swift; sourceTree = "<group>"; };
+		CC6CD23225170F8100B916BA /* FindrCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindrCardFooterView.swift; sourceTree = "<group>"; };
+		CC6CD23525170F9A00B916BA /* FindrCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindrCardOverlay.swift; sourceTree = "<group>"; };
+		CC6CD23825170FBE00B916BA /* FindrCardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindrCardContentView.swift; sourceTree = "<group>"; };
+		CC6CD23B25170FD600B916BA /* FindrButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindrButton.swift; sourceTree = "<group>"; };
+		CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
+		CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,10 +190,10 @@
 		CC638F28251575B90019D2AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CC6CD22C25170F0200B916BA /* Swipe */,
 				CC3301712515B70400C8FD07 /* CreatingSession */,
 				CC638F10251575460019D2AA /* InitialVC.swift */,
 				CC638F512515950C0019D2AA /* DecideVC.swift */,
-				CC2BE05F2515D20900E90C71 /* SwipeVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -189,8 +203,31 @@
 			children = (
 				CC638F46251581E20019D2AA /* UIColor+Extensions.swift */,
 				CC6CD2152516F2FD00B916BA /* Collection+Extensions.swift */,
+				CC6CD25F2517128A00B916BA /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CC6CD22C25170F0200B916BA /* Swipe */ = {
+			isa = PBXGroup;
+			children = (
+				CC6CD22D25170F3300B916BA /* FindrCard */,
+				CC2BE05F2515D20900E90C71 /* SwipeVC.swift */,
+				CC6CD23B25170FD600B916BA /* FindrButton.swift */,
+				CC6CD23E25170FEF00B916BA /* ButtonStackView.swift */,
+			);
+			path = Swipe;
+			sourceTree = "<group>";
+		};
+		CC6CD22D25170F3300B916BA /* FindrCard */ = {
+			isa = PBXGroup;
+			children = (
+				CC6CD22E25170F4700B916BA /* FindrCardModel.swift */,
+				CC6CD23225170F8100B916BA /* FindrCardFooterView.swift */,
+				CC6CD23525170F9A00B916BA /* FindrCardOverlay.swift */,
+				CC6CD23825170FBE00B916BA /* FindrCardContentView.swift */,
+			);
+			path = FindrCard;
 			sourceTree = "<group>";
 		};
 		DF46B6BA16D0AEA37DA84816 /* Frameworks */ = {
@@ -316,20 +353,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC6CD22F25170F4700B916BA /* FindrCardModel.swift in Sources */,
 				CC638F11251575460019D2AA /* InitialVC.swift in Sources */,
 				CC638F47251581E20019D2AA /* UIColor+Extensions.swift in Sources */,
 				CC2BE0632515D9A300E90C71 /* SessionManager.swift in Sources */,
 				CC638F0D251575460019D2AA /* AppDelegate.swift in Sources */,
+				CC6CD23325170F8100B916BA /* FindrCardFooterView.swift in Sources */,
 				CC638F3A2515764A0019D2AA /* CurvedButton.swift in Sources */,
 				CC638F552515953D0019D2AA /* DecideView.swift in Sources */,
+				CC6CD23925170FBE00B916BA /* FindrCardContentView.swift in Sources */,
 				CC2BE0602515D20900E90C71 /* SwipeVC.swift in Sources */,
 				CC3301332515A54500C8FD07 /* StartSessionVC.swift in Sources */,
+				CC6CD23F25170FEF00B916BA /* ButtonStackView.swift in Sources */,
+				CC6CD2602517128A00B916BA /* UIView+Extensions.swift in Sources */,
 				CC638F34251576350019D2AA /* Session.swift in Sources */,
 				CC3301732515B73200C8FD07 /* MovieSessionVC.swift in Sources */,
 				CC3301762515B73B00C8FD07 /* ResturantSessionVC.swift in Sources */,
+				CC6CD23625170F9A00B916BA /* FindrCardOverlay.swift in Sources */,
 				CC638F37251576420019D2AA /* SignUpView.swift in Sources */,
 				CC3301602515A99E00C8FD07 /* StartSessionView.swift in Sources */,
 				CC6CD21B2517088100B916BA /* SwipeView.swift in Sources */,
+				CC6CD23C25170FD600B916BA /* FindrButton.swift in Sources */,
 				CC638F31251576280019D2AA /* Food.swift in Sources */,
 				CC638F2D251576200019D2AA /* Movie.swift in Sources */,
 				CC638F0F251575460019D2AA /* SceneDelegate.swift in Sources */,

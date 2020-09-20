@@ -25,7 +25,16 @@ class DecideVC: UIViewController {
     }
     
     @objc func xOut() {
-        self.dismiss(animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromBottom
+        
+        let vc = InitialVC()
+        vc.modalPresentationStyle = .fullScreen
+        self.view.window!.layer.add(transition, forKey: nil)
+        self.present(vc, animated: false)
     }
     
     @objc func startSesh() {
